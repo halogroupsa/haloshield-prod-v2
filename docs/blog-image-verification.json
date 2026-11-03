@@ -1,0 +1,51 @@
+{
+  "article_checks": [
+    {
+      "slug": "waterproofing-quotation-dubai",
+      "responsive_image": true,
+      "alt_text": true,
+      "social_image_matches": true,
+      "dimensions_correct": true,
+      "generation_disclosed": true
+    },
+    {
+      "slug": "polyurea-waterproofing",
+      "responsive_image": true,
+      "alt_text": true,
+      "social_image_matches": true,
+      "dimensions_correct": true,
+      "generation_disclosed": true
+    },
+    {
+      "slug": "mold-remediation",
+      "responsive_image": true,
+      "alt_text": true,
+      "social_image_matches": true,
+      "dimensions_correct": true,
+      "generation_disclosed": true
+    },
+    {
+      "slug": "mold-testing",
+      "responsive_image": true,
+      "alt_text": true,
+      "social_image_matches": true,
+      "dimensions_correct": true,
+      "generation_disclosed": true
+    },
+    {
+      "slug": "roof-leak-inspection-checklist-dubai",
+      "responsive_image": true,
+      "alt_text": true,
+      "social_image_matches": true,
+      "dimensions_correct": true,
+      "generation_disclosed": true
+    }
+  ],
+  "responsive_webp_assets": 15,
+  "desktop_listing_images_loaded": 5,
+  "mobile_width": 390,
+  "mobile_listing_and_article_no_horizontal_overflow": true,
+  "build": "passed",
+  "static_export_check": "80 pages passed; zero errors or warnings",
+  "status": "local; not deployed"
+}

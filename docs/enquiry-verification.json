@@ -1,0 +1,8 @@
+{
+  "message_fields_preserved": true,
+  "service_context_preserved": true,
+  "whatsapp_recipient_verified": true,
+  "tracking_event_contains_no_contact_fields": true,
+  "window_uses_noopener": true,
+  "live_enquiry_sent": false
+}

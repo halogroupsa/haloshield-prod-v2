@@ -1,0 +1,127 @@
+# 301s from the old haloshield.ae URL structure → new keyword-first URLs.
+# Preserves existing rankings and backlinks. Specific rules first, splats last.
+
+# Solutions → services
+/solutions/roof-surface-waterproofing        /services/roof-waterproofing-dubai/                          301
+/solutions/roof-surface-waterproofing/ /services/roof-waterproofing-dubai/ 301
+/solutions/waterproofing                     /services/roof-waterproofing-dubai/                          301
+/solutions/waterproofing/ /services/roof-waterproofing-dubai/ 301
+/solutions/building-envelope-solutions       /services/building-envelope-waterproofing-dubai/                         301
+/solutions/building-envelope-solutions/ /services/building-envelope-waterproofing-dubai/ 301
+/solutions/polyurea-industrial-applications  /services/polyurea-coating-dubai/                            301
+/solutions/polyurea-industrial-applications/ /services/polyurea-coating-dubai/ 301
+/solutions/polyurea                          /services/polyurea-coating-dubai/                            301
+/solutions/polyurea/ /services/polyurea-coating-dubai/ 301
+/solutions/flooring-coatings                 /services/epoxy-industrial-flooring-dubai/                   301
+/solutions/flooring-coatings/ /services/epoxy-industrial-flooring-dubai/ 301
+/solutions/flooring-coating                  /services/epoxy-industrial-flooring-dubai/                   301
+/solutions/flooring-coating/ /services/epoxy-industrial-flooring-dubai/ 301
+/solutions/building-energy-solutions         /services/building-energy-assessment-dubai/  301
+/solutions/building-energy-solutions/ /services/building-energy-assessment-dubai/ 301
+/solutions/mold-protection                   /services/mold-remediation-indoor-air-quality-dubai/         301
+/solutions/mold-protection/ /services/mold-remediation-indoor-air-quality-dubai/ 301
+/solutions/indoor-air-quality                /services/indoor-air-quality-dubai/         301
+/solutions/indoor-air-quality/ /services/indoor-air-quality-dubai/ 301
+/solutions/fire-protection                   /services/fire-protection-coatings-dubai/                    301
+/solutions/fire-protection/ /services/fire-protection-coatings-dubai/ 301
+/solutions/*                                 /services/                                                   301
+
+# Company → areas / about
+/company/dubai                               /dubai/                                                      301
+/company/dubai/ /dubai/ 301
+/company/abu-dhabi                           /abu-dhabi/                                            301
+/company/abu-dhabi/ /abu-dhabi/ 301
+/company/sharjah                             /sharjah/                                              301
+/company/sharjah/ /sharjah/ 301
+/company/ajman                               /ajman/                                                301
+/company/ajman/ /ajman/ 301
+/company/umm-al-quwain                       /umm-al-quwain/                                        301
+/company/umm-al-quwain/ /umm-al-quwain/ 301
+/company/ras-al-khaimah                      /ras-al-khaimah/                                       301
+/company/ras-al-khaimah/ /ras-al-khaimah/ 301
+/company/fujairah                            /fujairah/                                             301
+/company/fujairah/ /fujairah/ 301
+/company/about-us                            /about/                                                      301
+/company/about-us/ /about/ 301
+/company/careers                             /careers/                                                      301
+/company/careers/ /careers/ 301
+/company/case-studies                        /projects/                                                   301
+/company/case-studies/ /projects/ 301
+/company/blog                                /blogs/                                                        301
+/company/blog/ /blogs/ 301
+/company/*                                   /about/                                                      301
+
+# Industry audience URLs are now restored as static pages.
+/applications/*                              /industries/                                                 301
+
+# Known guide links from the old About page
+/blog /blogs/ 301
+/blog/ /blogs/ 301
+/blog/polyurea-waterproofing /blogs/polyurea-waterproofing/ 301
+/blog/polyurea-waterproofing/ /blogs/polyurea-waterproofing/ 301
+/blog/mold-remediation /blogs/mold-remediation/ 301
+/blog/mold-remediation/ /blogs/mold-remediation/ 301
+/blog/mold-testing /blogs/mold-testing/ 301
+/blog/mold-testing/ /blogs/mold-testing/ 301
+
+# Previous resources routes → canonical blog routes
+/resources /blogs/ 301
+/resources/ /blogs/ 301
+/resources/waterproofing-quotation-dubai /blogs/waterproofing-quotation-dubai/ 301
+/resources/waterproofing-quotation-dubai/ /blogs/waterproofing-quotation-dubai/ 301
+/resources/polyurea-waterproofing /blogs/polyurea-waterproofing/ 301
+/resources/polyurea-waterproofing/ /blogs/polyurea-waterproofing/ 301
+/resources/mold-remediation /blogs/mold-remediation/ 301
+/resources/mold-remediation/ /blogs/mold-remediation/ 301
+/resources/mold-testing /blogs/mold-testing/ 301
+/resources/mold-testing/ /blogs/mold-testing/ 301
+/resources/roof-leak-inspection-checklist-dubai /blogs/roof-leak-inspection-checklist-dubai/ 301
+/resources/roof-leak-inspection-checklist-dubai/ /blogs/roof-leak-inspection-checklist-dubai/ 301
+
+# Direct area URLs: preserve links to the previous nested routes.
+/areas/dubai /dubai/ 301
+/areas/dubai/ /dubai/ 301
+/areas/palm-jumeirah /palm-jumeirah/ 301
+/areas/palm-jumeirah/ /palm-jumeirah/ 301
+/areas/emirates-hills /emirates-hills/ 301
+/areas/emirates-hills/ /emirates-hills/ 301
+/areas/al-barari /al-barari/ 301
+/areas/al-barari/ /al-barari/ 301
+/areas/district-one-mbr-city /district-one-mbr-city/ 301
+/areas/district-one-mbr-city/ /district-one-mbr-city/ 301
+/areas/jumeirah-bay /jumeirah-bay/ 301
+/areas/jumeirah-bay/ /jumeirah-bay/ 301
+/areas/jumeirah-golf-estates /jumeirah-golf-estates/ 301
+/areas/jumeirah-golf-estates/ /jumeirah-golf-estates/ 301
+/areas/arabian-ranches /arabian-ranches/ 301
+/areas/arabian-ranches/ /arabian-ranches/ 301
+/areas/dubai-hills-estate /dubai-hills-estate/ 301
+/areas/dubai-hills-estate/ /dubai-hills-estate/ 301
+/areas/the-meadows /the-meadows/ 301
+/areas/the-meadows/ /the-meadows/ 301
+/areas/the-springs /the-springs/ 301
+/areas/the-springs/ /the-springs/ 301
+/areas/downtown-dubai /downtown-dubai/ 301
+/areas/downtown-dubai/ /downtown-dubai/ 301
+/areas/dubai-marina /dubai-marina/ 301
+/areas/dubai-marina/ /dubai-marina/ 301
+/areas/business-bay /business-bay/ 301
+/areas/business-bay/ /business-bay/ 301
+/areas/jumeirah /jumeirah/ 301
+/areas/jumeirah/ /jumeirah/ 301
+/areas/al-barsha /al-barsha/ 301
+/areas/al-barsha/ /al-barsha/ 301
+/areas/tilal-al-ghaf /tilal-al-ghaf/ 301
+/areas/tilal-al-ghaf/ /tilal-al-ghaf/ 301
+/areas/abu-dhabi /abu-dhabi/ 301
+/areas/abu-dhabi/ /abu-dhabi/ 301
+/areas/sharjah /sharjah/ 301
+/areas/sharjah/ /sharjah/ 301
+/areas/ajman /ajman/ 301
+/areas/ajman/ /ajman/ 301
+/areas/ras-al-khaimah /ras-al-khaimah/ 301
+/areas/ras-al-khaimah/ /ras-al-khaimah/ 301
+/areas/umm-al-quwain /umm-al-quwain/ 301
+/areas/umm-al-quwain/ /umm-al-quwain/ 301
+/areas/fujairah /fujairah/ 301
+/areas/fujairah/ /fujairah/ 301

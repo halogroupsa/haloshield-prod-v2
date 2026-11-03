@@ -1,0 +1,12 @@
+{
+  "exported_pages": 80,
+  "known_old_static_pages": 45,
+  "redirect_rules": 113,
+  "errors": [],
+  "warnings": [],
+  "limits": [
+    "Original dynamic CMS articles cannot be inventoried without the old CMS export/access.",
+    "Static redirect rules validated; deployed HTTP 301 behaviour requires a host check.",
+    "No real enquiry sent."
+  ]
+}

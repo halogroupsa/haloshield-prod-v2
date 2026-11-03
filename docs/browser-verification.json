@@ -1,0 +1,20 @@
+{
+  "checked_on": "2026-10-23",
+  "browser": "Chrome",
+  "desktop_service_hero": "passed",
+  "mobile_width": 390,
+  "mobile_views": {
+    "building_envelope_service": "passed; no horizontal overflow",
+    "quotation_form": "passed; optional email validation rejects invalid email; no horizontal overflow",
+    "industry_directory": "passed; 24 sector/audience links; no horizontal overflow",
+    "warehouse_audience": "passed; four service links; no horizontal overflow",
+    "resources_directory": "passed; five guides; no horizontal overflow",
+    "quotation_guide": "passed; four content sections; no horizontal overflow"
+  },
+  "viewport_restored": true,
+  "live_enquiry_sent": false,
+  "limits": [
+    "Visual checks sampled shared templates; all 80 exported pages were checked structurally by verify-export.py.",
+    "Browser checks used the local development server; production output was independently validated as static HTML."
+  ]
+}
