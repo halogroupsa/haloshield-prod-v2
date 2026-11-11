@@ -1,4 +1,4 @@
-import { images, type ImageName } from "./images.generated";
+import { images, type ImageName } from "./images";
 
 /** Public URL of the largest generated width ≤ `max` (falls back to the smallest). */
 export function imageSrc(name: ImageName, max = Infinity) {

@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/Button";
 import { Breadcrumbs } from "./Breadcrumbs";
 import { whatsappHref } from "@/lib/site";
 import type { Crumb } from "@/lib/schema";
-import type { ImageName } from "@/lib/images.generated";
+import type { ImageName } from "@/lib/images";
 
 type Props = {
   crumbs: Crumb[];

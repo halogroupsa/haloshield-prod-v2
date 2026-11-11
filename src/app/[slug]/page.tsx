@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { CaseStudyFeatures } from "@/components/page/CaseStudyFeature";
 import { PageHero } from "@/components/page/PageHero";
 import { SectionHead } from "@/components/page/SectionHead";
 import { ExpandingCards } from "@/components/page/ExpandingCards";
@@ -13,6 +14,7 @@ import { Img } from "@/components/ui/Img";
 import { ArrowIcon } from "@/components/ui/Button";
 import { getService, projects, services, site } from "@/lib/site";
 import { areas, getArea } from "@/lib/content/areas";
+import { caseStudiesForArea, projectLocationPath } from "@/lib/content/case-studies";
 import { faqNode, pageGraph, serviceNode, type Crumb } from "@/lib/schema";
 import { imageSrc } from "@/lib/image-src";
 import { pageMeta } from "@/lib/seo";
@@ -54,6 +56,9 @@ export default async function AreaPage({ params }: PageProps<"/[slug]">) {
   ];
   const focus = a.services.map(getService).filter((x): x is NonNullable<typeof x> => Boolean(x));
   const local = projects.filter((p) => p.location === a.name);
+  const localCaseStudies = caseStudiesForArea(slug);
+  const projectLocations = [...new Set(localCaseStudies.map((project) => project.location))];
+  const projectIndex = projectLocations.length === 1 ? projectLocationPath(projectLocations[0]) : "/projects/";
   const where = a.kind === "community" ? `${a.name}, Dubai` : a.name;
   const place =
     a.kind === "community"
@@ -169,22 +174,41 @@ export default async function AreaPage({ params }: PageProps<"/[slug]">) {
           </div>
         </section>
 
-        <section aria-label="Projects" className="bg-bone py-16 md:py-24">
-          <div className="container-x">
-            <ProjectRail
-              list={local.length ? [...local, ...projects.filter((p) => p.location !== a.name)] : projects}
-              title={
-                <>
-                  <p className="text-eyebrow flex items-center gap-3 text-ink/60">
-                    <span className="h-px w-6 bg-halo" />
-                    {local.length ? `Including ${local.length} in ${a.name}` : "Selected work"}
-                  </p>
-                  <h2 className="text-display type-h2 mt-4">Recent projects</h2>
-                </>
-              }
-            />
-          </div>
-        </section>
+        {localCaseStudies.length > 0 ? (
+          <section aria-labelledby="local-projects" className="bg-bone py-16 md:py-24">
+            <div className="container-x">
+              <SectionHead
+                id="local-projects"
+                className="[&_h2]:max-w-none"
+                title={`Case studies in ${a.name}`}
+                aside={
+                  <Link href={projectIndex} className="inline-flex items-center gap-2 font-semibold text-ink">
+                    {projectLocations.length === 1 ? `All ${a.name} projects` : "Browse projects by location"}
+                    <ArrowIcon size={12} />
+                  </Link>
+                }
+              />
+              <CaseStudyFeatures projects={localCaseStudies} />
+            </div>
+          </section>
+        ) : (
+          <section aria-label="Projects" className="bg-bone py-16 md:py-24">
+            <div className="container-x">
+              <ProjectRail
+                list={local.length ? [...local, ...projects.filter((p) => p.location !== a.name)] : projects}
+                title={
+                  <>
+                    <p className="text-eyebrow flex items-center gap-3 text-ink/60">
+                      <span className="h-px w-6 bg-halo" />
+                      {local.length ? `Including ${local.length} in ${a.name}` : "Selected work"}
+                    </p>
+                    <h2 className="text-display type-h2 mt-4">Recent projects</h2>
+                  </>
+                }
+              />
+            </div>
+          </section>
+        )}
 
         <div className="pt-2 md:pt-3">
           <LuxGuardTeaser />

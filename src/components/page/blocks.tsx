@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { ImageName } from "@/lib/images";
 import { Img } from "@/components/ui/Img";
 import { ArrowIcon, Button } from "@/components/ui/Button";
 import { CountUp } from "@/components/ui/CountUp";
@@ -10,20 +11,32 @@ import { communities, emirates, luxguardLayers, processSteps, projects, stats, t
 
 type Project = (typeof projects)[number];
 
+type ProjectCardData = {
+  title: string;
+  location: string;
+  type: string;
+  spec: string;
+  image: ImageName;
+};
+
 export function ProjectCard({
   p,
+  href,
+  imageAlt,
   sizes = "(min-width: 1024px) 30vw, 80vw",
   aspect = "aspect-[4/5]",
 }: {
-  p: Project;
+  p: ProjectCardData;
+  href?: string;
+  imageAlt?: string;
   sizes?: string;
   aspect?: string;
 }) {
-  return (
+  const figure = (
     <figure className={`group relative overflow-hidden ${aspect} rounded-[22px] bg-ink-3 text-membrane`}>
       <Img
         name={p.image}
-        alt={`${p.title} in ${p.location}, Dubai — ${p.spec}`}
+        alt={imageAlt ?? `${p.title} in ${p.location}, Dubai — ${p.spec}`}
         sizes={sizes}
         className="absolute inset-0 size-full object-cover transition-transform duration-[1.4s] ease-out-expo group-hover:scale-[1.04]"
       />
@@ -32,12 +45,19 @@ export function ProjectCard({
         <span className="rounded-full bg-membrane/90 px-3 py-1 text-[0.75rem] font-medium text-ink">{p.type}</span>
         <span className="rounded-full bg-ink/40 px-3 py-1 text-[0.75rem] text-membrane backdrop-blur">{p.location}</span>
       </span>
-      <figcaption className="absolute inset-x-0 bottom-0 p-5">
+      <figcaption className={`absolute inset-x-0 bottom-0 p-5 ${href ? "pr-16" : ""}`}>
         <span className="block text-[1.125rem] font-medium leading-snug tracking-tight">{p.title}</span>
         <span className="mt-1 block text-[0.8125rem] text-membrane/75">{p.spec}</span>
+        {href && (
+          <span className="absolute bottom-5 right-5 grid size-9 place-items-center rounded-full bg-membrane/15 backdrop-blur transition-colors group-hover:bg-halo group-hover:text-ink group-focus-visible:bg-halo group-focus-visible:text-ink">
+            <ArrowIcon size={12} />
+          </span>
+        )}
       </figcaption>
     </figure>
   );
+
+  return href ? <Link href={href} className="group block rounded-[22px]" prefetch={false}>{figure}</Link> : figure;
 }
 
 export function ProjectRail({ title, list = projects }: { title: React.ReactNode; list?: readonly Project[] }) {

@@ -1,12 +1,16 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import { CaseStudyFeatures } from "@/components/page/CaseStudyFeature";
 import { PageHero } from "@/components/page/PageHero";
 import { JsonLd } from "@/components/page/JsonLd";
 import { ProjectGrid } from "@/components/page/ProjectGrid";
+import { SectionHead } from "@/components/page/SectionHead";
 import { StatsBand } from "@/components/page/blocks";
 import { TrustMarquee } from "@/components/home/TrustMarquee";
 import { FinalCta } from "@/components/home/FinalCta";
 import { projects, site } from "@/lib/site";
 import { imageSrc } from "@/lib/image-src";
+import { caseStudies, projectLocationPath, projectLocations, projectLocationSlugs } from "@/lib/content/case-studies";
 import { pageGraph, type Crumb } from "@/lib/schema";
 import { pageMeta } from "@/lib/seo";
 
@@ -34,6 +38,16 @@ export default function ProjectsPage() {
           page: { "@type": ["WebPage", "CollectionPage"] },
           nodes: [
             {
+              "@type": "ItemList",
+              "@id": `${site.url}${path}#project-locations`,
+              itemListElement: projectLocationSlugs.map((location, index) => ({
+                "@type": "ListItem",
+                position: index + 1,
+                url: `${site.url}${projectLocationPath(location)}`,
+                name: projectLocations[location].name,
+              })),
+            },
+            {
               "@type": "ImageGallery",
               "@id": `${site.url}${path}#gallery`,
               name: "Halo Shield projects in Dubai",
@@ -59,13 +73,34 @@ export default function ProjectsPage() {
           chips={["Villas", "Podiums", "Domes", "Terraces"]}
         />
 
-        <section aria-label="Project gallery" className="py-12 md:py-16">
+        <section aria-labelledby="project-locations" className="py-16 md:py-24">
           <div className="container-x">
+            <SectionHead id="project-locations" title="Projects by location" />
+            <ul className="mt-8 flex flex-wrap gap-2">
+              {projectLocationSlugs.map((location) => (
+                <li key={location}>
+                  <Link
+                    href={projectLocationPath(location)}
+                    className="inline-flex min-h-10 items-center rounded-full border border-ink/15 px-4 text-[0.8125rem] text-ink/80 transition-colors hover:border-ink hover:bg-ink hover:text-membrane"
+                  >
+                    {projectLocations[location].name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <h3 className="text-display type-h3 mt-12">Featured case studies</h3>
+            <CaseStudyFeatures projects={caseStudies.slice(0, 3)} />
+          </div>
+        </section>
+
+        <section aria-labelledby="project-gallery" className="bg-bone py-12 md:py-16">
+          <div className="container-x">
+            <SectionHead id="project-gallery" title="Project gallery" className="mb-8" />
             <ProjectGrid />
           </div>
         </section>
 
-        <section aria-label="Track record" className="pb-16 md:pb-24">
+        <section aria-label="Track record" className="py-16 md:py-24">
           <div className="container-x">
             <StatsBand />
           </div>

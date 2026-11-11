@@ -1,4 +1,4 @@
-import { images, type ImageName } from "@/lib/images.generated";
+import { images, type ImageName } from "@/lib/images";
 
 type Props = {
   name: ImageName;
