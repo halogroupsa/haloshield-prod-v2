@@ -3,13 +3,18 @@ import { ArrowIcon } from "@/components/ui/Button";
 import { Img } from "@/components/ui/Img";
 import {
   caseStudyPath,
+  caseStudyTimeline,
+  projectPhotoId,
   projectLocations,
   type CaseStudy,
 } from "@/lib/content/case-studies";
 import { getService } from "@/lib/site";
 
 export function CaseStudyFeature({ project, detail = false }: { project: CaseStudy; detail?: boolean }) {
-  const [cover] = project.photos;
+  const alternateIndex = project.overview.image
+    ? project.photos.findIndex((photo) => photo.image === project.overview.image)
+    : -1;
+  const cover = project.photos[Math.max(0, alternateIndex)];
   const { summary, highlights, surface, stage } = project.overview;
   const location = projectLocations[project.location].name;
   const Heading = detail ? "h2" : "h3";
@@ -17,7 +22,7 @@ export function CaseStudyFeature({ project, detail = false }: { project: CaseStu
 
   return (
     <div className="grid gap-7 lg:grid-cols-2 lg:items-center lg:gap-12">
-      <figure>
+      <figure id={detail && alternateIndex >= 0 ? projectPhotoId(alternateIndex) : undefined} className="scroll-mt-28">
         <div className="overflow-hidden rounded-[22px] bg-bone-2">
           <Img
             name={cover.image}
@@ -80,39 +85,49 @@ export function CaseStudyFeatures({ projects, previewPhotos = false }: {
 }) {
   return (
     <ul className="mt-8 divide-y divide-ink/12 md:mt-10">
-      {projects.map((project) => (
-        <li key={caseStudyPath(project)} className="py-10 first:pt-0 last:pb-0 md:py-14">
-          <article aria-labelledby={project.slug}>
-            <CaseStudyFeature project={project} />
-            {previewPhotos && project.photos.length > 1 && (
-              <ul aria-label={`Site photos from ${project.title}`} className="no-scrollbar mt-7 flex snap-x snap-mandatory gap-3 overflow-x-auto sm:mt-9 sm:grid sm:grid-cols-3">
-                {project.photos.slice(1, 4).map((photo, index) => (
-                  <li key={photo.image} className="w-[76%] shrink-0 snap-start sm:w-auto">
-                    <Link
-                      href={`${caseStudyPath(project)}#project-photo-${index + 2}`}
-                      className="group block rounded-[22px]"
-                      aria-label={`View project photo — ${photo.caption}`}
-                      prefetch={false}
-                    >
-                      <figure>
-                        <div className="overflow-hidden rounded-[22px] bg-bone-2">
-                          <Img
-                            name={photo.image}
-                            alt={photo.caption}
-                            sizes="(min-width: 1440px) 435px, (min-width: 640px) 31vw, 76vw"
-                            className="aspect-[16/10] w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
-                          />
-                        </div>
-                        <figcaption className="mt-2 text-[0.8125rem] leading-relaxed text-ink/70">{photo.caption}</figcaption>
-                      </figure>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </article>
-        </li>
-      ))}
+      {projects.map((project) => {
+        const timeline = previewPhotos ? caseStudyTimeline(project) : [];
+        const previews = timeline.length
+          ? timeline
+          : project.photos.slice(1, 4).map((photo, index) => ({ photo, id: projectPhotoId(index + 1), label: undefined }));
+
+        return (
+          <li key={caseStudyPath(project)} className="py-10 first:pt-0 last:pb-0 md:py-14">
+            <article aria-labelledby={project.slug}>
+              <CaseStudyFeature project={project} />
+              {previewPhotos && previews.length > 0 && (
+                <ul aria-label={`Site photos from ${project.title}`} className="no-scrollbar mt-7 flex snap-x snap-mandatory gap-3 overflow-x-auto sm:mt-9 sm:grid sm:grid-cols-3">
+                  {previews.map(({ photo, id, label }) => (
+                    <li key={photo.image} className="w-[76%] shrink-0 snap-start sm:w-auto">
+                      <Link
+                        href={`${caseStudyPath(project)}#${id}`}
+                        className="group block rounded-[22px]"
+                        aria-label={`View project photo — ${photo.caption}`}
+                        prefetch={false}
+                      >
+                        <figure>
+                          <div className="overflow-hidden rounded-[22px] bg-bone-2">
+                            <Img
+                              name={photo.image}
+                              alt={photo.caption}
+                              sizes="(min-width: 1440px) 435px, (min-width: 640px) 31vw, 76vw"
+                              className="aspect-[16/10] w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                            />
+                          </div>
+                          <figcaption className="mt-2 text-[0.8125rem] leading-relaxed text-ink/70">
+                            {label && <strong className="mb-1 block text-ink">{label}</strong>}
+                            {photo.caption}
+                          </figcaption>
+                        </figure>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </article>
+          </li>
+        );
+      })}
     </ul>
   );
 }

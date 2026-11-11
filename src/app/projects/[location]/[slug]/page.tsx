@@ -6,8 +6,9 @@ import { CaseStudyGrid } from "@/components/page/CaseStudyGrid";
 import { JsonLd } from "@/components/page/JsonLd";
 import { PageHero } from "@/components/page/PageHero";
 import { SectionHead } from "@/components/page/SectionHead";
+import { VillaRenovationReferral } from "@/components/page/VillaRenovationReferral";
 import { Img } from "@/components/ui/Img";
-import { caseStudies, caseStudiesInLocation, caseStudyPath, projectLocationPath, projectLocations } from "@/lib/content/case-studies";
+import { caseStudies, caseStudiesInLocation, caseStudyPath, caseStudyTimeline, projectLocationPath, projectLocations, projectPhotoId } from "@/lib/content/case-studies";
 import { imageSrc } from "@/lib/image-src";
 import { images } from "@/lib/images";
 import { pageGraph, type Crumb } from "@/lib/schema";
@@ -48,7 +49,10 @@ export default async function CaseStudyPage({ params }: PageProps<"/projects/[lo
   const place = projectLocations[project.location];
   const path = caseStudyPath(project);
   const locationPath = projectLocationPath(project.location);
-  const [cover, ...gallery] = project.photos;
+  const photos = project.photos.map((photo, index) => ({ ...photo, id: projectPhotoId(index) }));
+  const [cover] = project.photos;
+  const timeline = caseStudyTimeline(project);
+  const gallery = photos.slice(1).filter((photo) => !photo.phase && photo.image !== project.overview.image);
   const related = caseStudiesInLocation(project.location).filter((entry) => entry !== project);
   const crumbs: Crumb[] = [
     { name: "Home", path: "/" },
@@ -104,16 +108,53 @@ export default async function CaseStudyPage({ params }: PageProps<"/projects/[lo
             </div>
           </section>
 
-          <section aria-labelledby="work-in-detail" className="pb-16 md:pb-24">
+          {timeline.length > 0 && (
+            <section aria-labelledby="project-timeline" className="bg-bone py-16 md:py-24">
+              <div className="container-x">
+                <SectionHead id="project-timeline" title="Before, during and after coating" />
+                <ol className="mt-8 grid gap-x-4 gap-y-8 lg:grid-cols-3">
+                  {timeline.map(({ photo, id, label, title, body }) => (
+                    <li key={photo.image}>
+                      <figure id={id} className="scroll-mt-28">
+                        <div className="overflow-hidden rounded-[22px] bg-bone-2">
+                          <Img
+                            name={photo.image}
+                            alt={photo.caption}
+                            sizes="(min-width: 1440px) 435px, (min-width: 1024px) 31vw, 94vw"
+                            className="aspect-[4/3] w-full object-cover"
+                          />
+                        </div>
+                        <figcaption className="mt-4">
+                          <p className="text-eyebrow text-ink/65">{label}</p>
+                          <h3 className="text-display type-h4 mt-2">{title}</h3>
+                          <p className="mt-2 text-[0.9375rem] leading-relaxed text-ink/75">{body}</p>
+                        </figcaption>
+                      </figure>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            </section>
+          )}
+
+          <section aria-labelledby="work-in-detail" className={timeline.length ? "py-16 md:py-24" : "pb-16 md:pb-24"}>
             <div className="container-x">
-              <SectionHead id="work-in-detail" title="Work in detail" />
-              <div className="mt-8 grid gap-x-10 gap-y-6 md:grid-cols-2">
+              <SectionHead id="work-in-detail" title={timeline.length ? "What property owners can learn" : "Work in detail"} />
+              <div className={`mt-8 grid gap-x-10 gap-y-6 ${sections.length > 1 || project.renovationReferral ? "md:grid-cols-2" : ""}`}>
                 {sections.map((section) => (
                   <div key={section.title} className="border-t border-ink/12 pt-4">
                     <h3 className="text-display type-h4">{section.title}</h3>
                     <p className="mt-2 max-w-[66ch] text-[0.9375rem] leading-relaxed text-ink/75">{section.body}</p>
                   </div>
                 ))}
+                {project.renovationReferral && (
+                  <div className="border-t border-ink/12 pt-4">
+                    <h3 className="text-display type-h4">Planning your own villa renovation?</h3>
+                    <p className="mt-2 max-w-[66ch] text-[0.9375rem] leading-relaxed text-ink/75">
+                      <VillaRenovationReferral {...project.renovationReferral} />
+                    </p>
+                  </div>
+                )}
               </div>
             </div>
           </section>
@@ -123,8 +164,8 @@ export default async function CaseStudyPage({ params }: PageProps<"/projects/[lo
               <div className="container-x">
                 <SectionHead id="project-photos" title="Project photos" />
                 <div className="mt-8 grid gap-x-4 gap-y-7 sm:grid-cols-2">
-                  {gallery.map((photo, index) => (
-                    <figure key={photo.image} id={`project-photo-${index + 2}`} className="scroll-mt-28">
+                  {gallery.map((photo) => (
+                    <figure key={photo.image} id={photo.id} className="scroll-mt-28">
                       <div className="overflow-hidden rounded-[22px] bg-bone-2">
                         <Img
                           name={photo.image}

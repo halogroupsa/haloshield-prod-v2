@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { PageHero } from "@/components/page/PageHero";
 import { BuyerGuide } from "@/components/page/BuyerGuide";
 import { SectionHead } from "@/components/page/SectionHead";
+import { VillaRenovationReferral } from "@/components/page/VillaRenovationReferral";
 import { FaqList } from "@/components/page/FaqList";
 import { FaqAside } from "@/components/page/FaqAside";
 import { ExpandingCards } from "@/components/page/ExpandingCards";
@@ -16,6 +17,8 @@ import { Logo } from "@/components/ui/Logo";
 import { ArrowIcon, Button } from "@/components/ui/Button";
 import { getService, processSteps, services, site, telHref } from "@/lib/site";
 import { serviceDetails } from "@/lib/content/services";
+import { resources } from "@/lib/content/resources";
+import { blogPostPath } from "@/lib/blogs";
 import { faqNode, pageGraph, serviceNode, type Crumb } from "@/lib/schema";
 import { imageSrc } from "@/lib/image-src";
 import { pageMeta } from "@/lib/seo";
@@ -40,6 +43,7 @@ export default async function ServicePage({ params }: PageProps<"/services/[slug
   const d = serviceDetails[slug];
   if (!s || !d) notFound();
 
+  const { renovationReferral } = d;
   const path = `/services/${slug}/`;
   const crumbs: Crumb[] = [
     { name: "Home", path: "/" },
@@ -49,6 +53,7 @@ export default async function ServicePage({ params }: PageProps<"/services/[slug
   const chips = d.spec.map((x) => x.v).filter((v) => v.length <= 26).slice(0, 3);
   const related = d.related.map(getService).filter((x): x is NonNullable<typeof x> => Boolean(x));
   const lower = s.name.toLowerCase();
+  const guides = resources.filter((guide) => guide.service === slug).slice(0, 3);
   const assessment = ["indoor-air-quality-dubai", "building-energy-assessment-dubai", "leak-detection-thermal-inspection-dubai"].includes(slug);
   const membrane = s.group === "waterproofing" || slug === "polyurea-coating-dubai";
   const deliverySteps = assessment ? [
@@ -84,7 +89,7 @@ export default async function ServicePage({ params }: PageProps<"/services/[slug
         {/* Overview — split layout from the reference */}
         <section aria-labelledby="overview" className="py-16 md:py-24">
           <div className="container-x grid gap-10 lg:grid-cols-12 lg:gap-12">
-            <div className="lg:col-span-6">
+            <div className={renovationReferral ? "lg:col-span-6 lg:flex lg:flex-col" : "lg:col-span-6"}>
               <p className="text-eyebrow flex items-center gap-3 text-ink/60" data-reveal>
                 <span className="h-px w-6 bg-halo" />
                 Overview
@@ -92,12 +97,12 @@ export default async function ServicePage({ params }: PageProps<"/services/[slug
               <h2 id="overview" className="text-display type-h2 mt-4 max-w-[20ch]" data-reveal>
                 {s.name}: scope, systems and delivery
               </h2>
-              <div className="mt-8 overflow-hidden rounded-[22px] bg-bone-2" data-reveal="clip">
+              <div className={`mt-8 overflow-hidden rounded-[22px] bg-bone-2 ${renovationReferral ? "lg:relative lg:aspect-[4/3] lg:grow" : ""}`} data-reveal="clip">
                 <Img
                   name={d.gallery[0]}
                   alt={`${s.name} project by Halo Shield, Dubai`}
                   sizes="(min-width: 1024px) 45vw, 92vw"
-                  className="aspect-[4/3] w-full object-cover"
+                  className={`aspect-[4/3] w-full object-cover ${renovationReferral ? "lg:absolute lg:inset-0 lg:h-full" : ""}`}
                 />
               </div>
             </div>
@@ -133,9 +138,15 @@ export default async function ServicePage({ params }: PageProps<"/services/[slug
                 <p data-reveal>{d.overview[0]}</p>
                 <p data-reveal>{d.overview[1]}</p>
               </div>
-              <p className="text-display type-statement mt-10 max-w-[28ch] lg:mt-auto lg:pt-10" data-reveal>
-                The right specification starts with the condition of your property and the work it needs.
-              </p>
+              {renovationReferral ? (
+                <p className="mt-6 max-w-[66ch] text-[0.9375rem] leading-relaxed text-ink/75">
+                  <VillaRenovationReferral {...renovationReferral} />
+                </p>
+              ) : (
+                <p className="text-display type-statement mt-10 max-w-[28ch] lg:mt-auto lg:pt-10" data-reveal>
+                  The right specification starts with the condition of your property and the work it needs.
+                </p>
+              )}
             </div>
           </div>
         </section>
@@ -227,6 +238,27 @@ export default async function ServicePage({ params }: PageProps<"/services/[slug
         </section>
 
         <BuyerGuide slug={slug} />
+
+        {guides.length > 0 && (
+          <section aria-labelledby="related-guides" className="pb-16 md:pb-24">
+            <div className="container-x">
+              <SectionHead id="related-guides" title="Related guides" />
+              <ul className="mt-8 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+                {guides.map((guide) => (
+                  <li key={guide.slug}>
+                    <Link href={blogPostPath(guide.slug)} className="group flex h-full flex-col rounded-[22px] bg-bone p-6 hover:bg-bone-2 md:p-8">
+                      <h3 className="text-display type-h4">{guide.title}</h3>
+                      <p className="mt-3 grow text-[0.9375rem] leading-relaxed text-ink/70">{guide.description}</p>
+                      <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold">
+                        Read guide <ArrowIcon size={12} className="transition-transform group-hover:translate-x-1" />
+                      </span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </section>
+        )}
 
         <section aria-label="Recent projects" className="bg-bone py-16 md:py-24">
           <div className="container-x">

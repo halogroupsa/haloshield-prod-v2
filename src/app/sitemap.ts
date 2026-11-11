@@ -11,7 +11,8 @@ import {
 } from "@/lib/content/case-studies";
 import { industryPages } from "@/lib/content/industries";
 import { audiencePages } from "@/lib/content/audiences";
-import { resources } from "@/lib/content/resources";
+import { blogArchivePages, resources } from "@/lib/content/resources";
+import { blogArchivePath, blogPostPath } from "@/lib/blogs";
 import { imageSrc } from "@/lib/image-src";
 
 export const dynamic = "force-static";
@@ -23,9 +24,9 @@ const projectsUpdated = new Date("2026-11-11");
 export default function sitemap(): MetadataRoute.Sitemap {
   if (!allowIndexing) return [];
 
-  const u = (path: string, priority: number, images?: string[], lastModified = updated): MetadataRoute.Sitemap[number] => ({
+  const u = (path: string, priority: number, images?: string[], lastModified: Date | string | null = updated): MetadataRoute.Sitemap[number] => ({
     url: `${site.url}${path}`,
-    lastModified,
+    ...(lastModified ? { lastModified } : null),
     changeFrequency: priority >= 0.8 ? "weekly" : "monthly",
     priority,
     ...(images ? { images: images.map((i) => `${site.url}${i}`) } : null),
@@ -48,8 +49,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     u("/industries/", 0.6),
     ...industryPages.map((i) => u(`/industries/${i.slug}/`, 0.6)),
     ...audiencePages.map((i) => u(`/industries/${i.slug}/`, 0.6)),
-    u("/blogs/", 0.6),
-    ...resources.map((r) => u(`/blogs/${r.slug}/`, 0.6, [r.image.src])),
+    ...blogArchivePages.map((page) => u(blogArchivePath(page), 0.6, undefined, resources[0]?.publishedAt ?? null)),
+    ...resources.map((r) => u(blogPostPath(r.slug), 0.6, [r.image.src], r.publishedAt ?? null)),
     u("/careers/", 0.4),
     u("/about/", 0.6),
     u("/contact/", 0.7),

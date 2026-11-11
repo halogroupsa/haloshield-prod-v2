@@ -1,15 +1,39 @@
 import { blogImages, type BlogImageData } from "../blog-images.generated";
+import { BLOG_PAGE_SIZE } from "../blogs";
+import { waterproofingGuides } from "./waterproofing-guides";
 
-export type Resource = { slug: string; title: string; description: string; service: string; image: BlogImageData; sections: { heading: string; body: string }[] };
+type GuideLink = { href: `/${string}/${string}`; label: string };
+type GuideParagraph = string | readonly (string | GuideLink)[];
+
+export type Resource = {
+  slug: string;
+  title: string;
+  description: string;
+  service: string;
+  image: BlogImageData;
+  imageCaption?: string;
+  publishedAt?: string;
+  keywords?: readonly string[];
+  relatedLinks?: readonly GuideLink[];
+  sections: readonly { heading: string; body: string | readonly GuideParagraph[] }[];
+};
+
+const illustrationCaption = "AI-generated illustration based on website photo references.";
+// Cloudflare Pages reported the first production deployment of these guides at 10:43:47 UTC.
+const initialPublication = "2026-11-03T14:43:47+04:00";
 
 /** New editorial guides; not presented as recovered CMS articles. */
-export const resources: Resource[] = [
+const guides: Resource[] = [
+  ...waterproofingGuides,
   {
     "slug": "waterproofing-quotation-dubai",
     "image": blogImages["waterproofing-quotation-dubai"],
+    "imageCaption": illustrationCaption,
+    "publishedAt": initialPublication,
     "title": "How to compare waterproofing quotations in Dubai",
     "description": "Compare waterproofing quotes by area, preparation, system, testing, exclusions and warranty. A practical checklist for Dubai property owners.",
     "service": "roof-waterproofing-dubai",
+    "relatedLinks": [{ "href": "/dubai/", "label": "Waterproofing services across Dubai" }],
     "sections": [
       {
         "heading": "Start with the same scope",
@@ -32,6 +56,8 @@ export const resources: Resource[] = [
   {
     "slug": "polyurea-waterproofing",
     "image": blogImages["polyurea-waterproofing"],
+    "imageCaption": illustrationCaption,
+    "publishedAt": initialPublication,
     "title": "Understanding polyurea waterproofing before you appoint a contractor",
     "description": "Questions to ask about polyurea waterproofing in Dubai: substrate preparation, application, UV exposure, testing and return to service.",
     "service": "polyurea-coating-dubai",
@@ -57,6 +83,8 @@ export const resources: Resource[] = [
   {
     "slug": "mold-remediation",
     "image": blogImages["mold-remediation"],
+    "imageCaption": illustrationCaption,
+    "publishedAt": initialPublication,
     "title": "Planning mould remediation for a Dubai property",
     "description": "Prepare for mould remediation in Dubai: document damp, define treatment areas, address moisture and confirm what testing and reinstatement include.",
     "service": "mold-remediation-indoor-air-quality-dubai",
@@ -82,6 +110,8 @@ export const resources: Resource[] = [
   {
     "slug": "mold-testing",
     "image": blogImages["mold-testing"],
+    "imageCaption": illustrationCaption,
+    "publishedAt": initialPublication,
     "title": "Mould testing and indoor air quality: what to ask before booking",
     "description": "Understand the scope of mould testing and indoor air quality assessment in Dubai, including sampling, reports and follow-up requirements.",
     "service": "indoor-air-quality-dubai",
@@ -107,6 +137,8 @@ export const resources: Resource[] = [
   {
     "slug": "roof-leak-inspection-checklist-dubai",
     "image": blogImages["roof-leak-inspection-checklist-dubai"],
+    "imageCaption": illustrationCaption,
+    "publishedAt": initialPublication,
     "title": "What to send before a roof leak inspection in Dubai",
     "description": "Prepare for a Dubai roof leak inspection with photographs, plans, repair history, access details and questions about the proposed waterproofing scope.",
     "service": "leak-detection-thermal-inspection-dubai",
@@ -130,5 +162,15 @@ export const resources: Resource[] = [
     ]
   }
 ];
+
+const publishedTime = (guide: Resource) => Date.parse(guide.publishedAt ?? "") || 0;
+// Keep editorial order for posts released together.
+export const resources = guides.toSorted((a, b) => publishedTime(b) - publishedTime(a));
+export const blogPageCount = Math.max(1, Math.ceil(resources.length / BLOG_PAGE_SIZE));
+export const blogArchivePages = Array.from({ length: blogPageCount }, (_, index) => index + 1);
+
+export function getBlogArchivePage(page: number) {
+  return resources.slice((page - 1) * BLOG_PAGE_SIZE, page * BLOG_PAGE_SIZE);
+}
 
 export const getResource = (slug: string) => resources.find((r) => r.slug === slug);

@@ -17,7 +17,7 @@ npm run preview      # serve ./out on :4321
 PAGES_PROJECT=your-pages-project npm run deploy # verify and deploy to the explicit project
 ```
 
-## Pages (80 content pages, all static)
+## Pages
 
 | Route | Template | Notes |
 | --- | --- | --- |
@@ -25,7 +25,7 @@ PAGES_PROJECT=your-pages-project npm run deploy # verify and deploy to the expli
 | `/services/` + 15 × `/services/[slug]/` | service | existing and restored service copy, with quotation guidance |
 | `/areas/` + 23 × `/[slug]/` | area | Dubai + 16 Dubai communities + 6 other emirates |
 | `/industries/` + 24 × `/industries/[slug]/` | sector / audience | three sectors and all 21 restored industry audience URLs |
-| `/blogs/` + 5 × `/blogs/[slug]/` | guide | new planning guides; original CMS articles still need recovery |
+| `/blogs/`, `/blogs/page/[number]/`, `/blogs/[slug]/` | guide | searchable archive, older pages, and individual guides |
 | `/careers/` | careers | role areas and enquiry channel; no assumed live vacancies |
 | `/luxguard-360/`, `/projects/`, `/about/`, `/contact/`, `/faq/` | one-off | |
 | `/privacy-policy/`, `/terms-of-service/` | legal | ported from the old site — needs legal review |
@@ -53,6 +53,18 @@ scripts/optimize-images.py    regenerates public/images + the manifest from the 
 ```
 
 For the existing hero video specifications and preparing its next replacement, see [the hero video workflow](docs/hero-video-workflow.md).
+
+## Publishing a guide
+
+Add an entry in [`src/lib/content/resources.ts`](src/lib/content/resources.ts) with a permanent slug,
+title, description, publication timestamp (`publishedAt`, for example `2026-11-11T09:00:00+04:00`),
+cover image and article sections. The site displays times in Dubai time. Use the `service` slug for the guide’s primary service page. Add `relatedLinks`
+when a location, service or case study helps the reader take the next step. Add `keywords` for
+useful search terms or alternate spellings missing from the title, summary and section headings.
+
+Run the usual build and deploy when the post is ready to go live. Dated guides appear newest first.
+The build generates the article, its sitemap entry, the search index and a new archive page for
+each additional group of six guides.
 
 ## Signature interactions
 

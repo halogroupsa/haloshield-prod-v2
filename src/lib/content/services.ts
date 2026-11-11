@@ -1,4 +1,5 @@
 import type { ImageName } from "../images.generated";
+import type { VillaRenovationReferralCopy } from "@/components/page/VillaRenovationReferral";
 import { restoredServiceDetails } from "./restored-services";
 
 /**
@@ -15,6 +16,7 @@ export type ServiceDetail = {
   h1: string;
   lede: string;
   overview: [string, string];
+  renovationReferral?: VillaRenovationReferralCopy;
   signs: string[];
   applications: { t: string; d: string }[];
   spec: { k: string; v: string }[];
@@ -85,6 +87,10 @@ export const serviceDetails: Record<string, ServiceDetail> = {
       "Most villa leaks in Dubai happen at interfaces: where a roof meets a parapet, a terrace meets a door threshold, or a precast panel meets the next. Roof-only waterproofing ignores those junctions, so water simply moves to the next weak point. Newer villas are not immune — precast joints, rushed curing and generic membranes mean many leak within their first few years.",
       "A Halo Shield villa project begins with a 300+ point structural and envelope inspection, including thermal imaging and moisture mapping. From that we design one continuous protection strategy across roof, façade, terraces, wet areas, pool and basement, delivered by our own crews and backed by up to 25-year assurance.",
     ],
+    renovationReferral: {
+      text: "Halo Shield is Halo’s waterproofing and property protection brand. If waterproofing is part of a wider remodel, you can plan the design, approvals and construction with",
+      linkText: "Halo Interiors’ villa renovation team",
+    },
     signs: [
       "Damp patches on internal walls after rain or irrigation",
       "Cracks at window corners, parapets or between precast panels",
@@ -277,6 +283,10 @@ export const serviceDetails: Record<string, ServiceDetail> = {
       "Wet-area leaks are among the most common calls we get from Dubai apartments and villas, and among the most misdiagnosed. Re-grouting and silicone hide the symptom for a few weeks while water keeps soaking the screed, the wall behind and the ceiling below — where mold quietly takes hold.",
       "We use moisture mapping and thermal imaging to locate the escape path, remove only what's necessary, and install a continuous liquid membrane with reinforced corners, sealed drains and upstands at every wall — before tiles go back on. Kitchens, laundries and plant rooms get the same treatment.",
     ],
+    renovationReferral: {
+      text: "If you’re moving a shower or changing a bathroom layout, agree on drain positions and waterproofing before the new tiles go down. For a remodel that also includes kitchens or other rooms, see",
+      linkText: "Halo Interiors’ villa renovation service",
+    },
     signs: [
       "Stains or bubbling paint on the ceiling below a bathroom",
       "Swollen door frames, skirting or vanity units",

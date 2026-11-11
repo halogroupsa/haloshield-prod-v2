@@ -1,10 +1,11 @@
 import type { caseStudyImages } from "@/lib/case-study-images.generated";
+import type { VillaRenovationReferralCopy } from "@/components/page/VillaRenovationReferral";
 
 export const projectLocations = {
   "downtown-dubai": {
     name: "Downtown Dubai",
     areaSlug: "downtown-dubai",
-    description: "See how Halo Shield coated the tiled Boulevard Point podium in Downtown Dubai, from the exposed tile grid to the finished roof surface.",
+    description: "See how Halo Shield waterproofed the tiled Boulevard Point podium in Downtown Dubai, with before, during and after photos of the deck and its edges.",
   },
   "jumeirah-dubai": {
     name: "Jumeirah",
@@ -73,6 +74,11 @@ export type ProjectLocationSlug = keyof typeof projectLocations;
 type ProjectPhoto = {
   image: keyof typeof caseStudyImages;
   caption: string;
+  phase?: {
+    label: "Before" | "During" | "After";
+    title: string;
+    body: string;
+  };
 };
 
 export type CaseStudy = {
@@ -86,9 +92,11 @@ export type CaseStudy = {
     highlights: readonly string[];
     surface: string;
     stage: string;
+    image?: ProjectPhoto["image"];
   };
   service?: string;
   sections: readonly { title: string; body: string }[];
+  renovationReferral?: VillaRenovationReferralCopy;
   photos: readonly [ProjectPhoto, ...ProjectPhoto[]];
 };
 
@@ -96,46 +104,59 @@ export const caseStudies: readonly CaseStudy[] = [
   {
     location: "downtown-dubai",
     slug: "boulevard-point-podium-waterproofing",
-    title: "Boulevard Point Podium Waterproofing",
-    description: "See the tiled podium at Boulevard Point in Downtown Dubai before, during and after spray coating, with the Burj Khalifa in view.",
+    title: "How We Waterproofed Boulevard Point’s Tiled Podium",
+    description: "See how Halo Shield waterproofed a tiled podium around pipes and parapets in Downtown Dubai, with photos before, during and after spray coating.",
     scope: "High-rise podium",
     overview: {
-      summary: "Halo Shield coated the tiled podium at Boulevard Point, a high-rise property in Downtown Dubai. The working area sits inside low perimeter walls with pipe penetrations through the deck. The site record follows the same tile grid from its exposed condition through spray application to the light-coloured surface visible after coating.",
+      summary: "Where does a tiled podium need the closest attention? At Boulevard Point, the open deck meets low parapet walls, and service pipes rise through the tiles. Follow the coating work across the podium, then use those fixed points to compare the exposed tiles with the coated deck.",
       highlights: [
-        "Spray application across the tiled podium in sections.",
-        "Work at the floor-to-parapet junction and around rooftop pipes.",
-        "A side-by-side view of the coated and uncoated parts of the deck.",
+        "The tile grid, drain and pipes give you reference points in the before photo.",
+        "The crew’s spray passes show how the coating progressed across the tiles.",
+        "The parapet base and pipes help you trace where the finished coating meets the surrounding surfaces.",
       ],
       surface: "Tiled podium",
       stage: "Before, during and after coating",
+      image: "case-studies/bp-boulvard-point/07-coated-and-uncoated-sections",
     },
     service: "roof-waterproofing-dubai",
     sections: [
       {
-        title: "The existing podium surface",
-        body: "The tiled podium at Boulevard Point is enclosed by low parapet walls and surrounded by Downtown Dubai towers. The original photos show the tile grid and rooftop pipe penetrations, giving a clear reference for the surface before work began.",
-      },
-      {
-        title: "Spray application over the tiles",
-        body: "The crew worked across the tiled surface in sections, moving the spray hose as the grey layer advanced. The close-up records the texture over the tile joints, and a wider shot shows coated and uncoated areas side by side.",
-      },
-      {
-        title: "The coated podium",
-        body: "The final views show a light-coloured surface across the main podium area. Pipe penetrations and the low perimeter walls remain visible, making it possible to compare the same details across the sequence.",
-      },
-      {
-        title: "Why the edges matter",
-        body: "A podium needs continuity where the open deck meets the perimeter wall and where services pass through the surface. These junctions interrupt the tile grid, so they need a closer look than the middle of the deck. The application and comparison photographs show where the crew was working in relation to those interruptions.",
+        title: "What to look for on a tiled podium",
+        body: "When you review a podium waterproofing proposal, ask how the system will continue where the deck turns up against a wall and where pipes pass through it. A wide photo shows coverage across the open deck. Close views at those junctions show how the surface changes where the coating has to meet a wall or a pipe.",
       },
     ],
     photos: [
-      { image: "case-studies/bp-boulvard-point/01-cover-coated-roof-and-skyline", caption: "Light-coloured coating across the Boulevard Point podium with the Burj Khalifa beyond" },
-      { image: "case-studies/bp-boulvard-point/02-roof-before-coating", caption: "Original tiled podium and pipe penetrations before application" },
-      { image: "case-studies/bp-boulvard-point/03-crew-applying-coating", caption: "Crew spray-applying a grey layer across the tile grid" },
+      {
+        image: "case-studies/bp-boulvard-point/01-cover-coated-roof-and-skyline",
+        caption: "Light-coloured coating across the Boulevard Point podium with the Burj Khalifa beyond",
+        phase: {
+          label: "After",
+          title: "Check the coated deck against the original layout",
+          body: "The light-coloured coating extends across the main deck. The pipes and parapet walls are still visible, so you can use them to compare the coated area with the original tiled surface.",
+        },
+      },
+      {
+        image: "case-studies/bp-boulvard-point/02-roof-before-coating",
+        caption: "Exposed podium tiles, a drain and a service pipe before coating",
+        phase: {
+          label: "Before",
+          title: "Find where the deck changes",
+          body: "The exposed tile grid makes the layout easy to read. Follow it to the base of the parapet and look for the drain and service pipe. Each interrupts the flat deck and needs to be accounted for when planning the work.",
+        },
+      },
+      {
+        image: "case-studies/bp-boulvard-point/03-crew-applying-coating",
+        caption: "Crew spray-applying coating across the tile grid beside the parapet",
+        phase: {
+          label: "During",
+          title: "Follow the spray passes",
+          body: "The crew worked across the podium in sections. The grey coating and exposed tiles are visible in the same frame, so you can see the line between the area already coated and the next part of the deck.",
+        },
+      },
       { image: "case-studies/bp-boulvard-point/04-roof-application-with-burj-khalifa", caption: "Podium coating in progress with the Burj Khalifa behind the crew" },
       { image: "case-studies/bp-boulvard-point/05-spray-application-detail", caption: "Applicator spraying across the tiled surface" },
       { image: "case-studies/bp-boulvard-point/06-coated-surface-texture", caption: "Close-up of the coated texture across intersecting tile joints" },
-      { image: "case-studies/bp-boulvard-point/07-coated-and-uncoated-sections", caption: "Coated and uncoated sections visible side by side" },
+      { image: "case-studies/bp-boulvard-point/07-coated-and-uncoated-sections", caption: "Coated and uncoated sections meet at the same parapet wall" },
     ],
   },
   {
@@ -258,6 +279,10 @@ export const caseStudies: readonly CaseStudy[] = [
         body: "The roof photographs show upstands and pipe penetrations interrupting the main surface. The balcony photos show a different set of junctions at the door, wall and rail line. In both spaces, those points define the edges of the work and are worth documenting separately from the wide view.",
       },
     ],
+    renovationReferral: {
+      text: "If your own villa remodel includes new balcony doors or flooring, agree on the threshold height and drainage before ordering finishes. For help coordinating those decisions with the rest of the remodel, explore",
+      linkText: "Halo Interiors’ turnkey villa renovation service",
+    },
     photos: [
       { image: "case-studies/dh-161-dubai-hills/01-cover-coated-roof", caption: "Light-coloured roof coating around upstands on a Dubai Hills Estate villa" },
       { image: "case-studies/dh-161-dubai-hills/02-roof-spray-crew", caption: "Two crew members spray-applying coating across the flat roof" },
@@ -813,6 +838,16 @@ export function projectLocationPath(location: ProjectLocationSlug) {
 
 export function caseStudyPath(project: CaseStudy) {
   return `${projectLocationPath(project.location)}${project.slug}/`;
+}
+
+export const projectPhotoId = (index: number) => `project-photo-${index + 1}`;
+
+export function caseStudyTimeline(project: CaseStudy) {
+  return (["Before", "During", "After"] as const).flatMap((label) => {
+    const index = project.photos.findIndex((photo) => photo.phase?.label === label);
+    const photo = project.photos[index];
+    return photo?.phase ? [{ photo, id: projectPhotoId(index), ...photo.phase }] : [];
+  });
 }
 
 export function caseStudiesInLocation(location: ProjectLocationSlug) {
