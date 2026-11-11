@@ -52,6 +52,7 @@ export default async function CaseStudyPage({ params }: PageProps<"/projects/[lo
   const photos = project.photos.map((photo, index) => ({ ...photo, id: projectPhotoId(index) }));
   const [cover] = project.photos;
   const timeline = caseStudyTimeline(project);
+  const takeaway = timeline.length > 0 && sections.length === 1 && !project.renovationReferral ? sections[0] : undefined;
   const gallery = photos.slice(1).filter((photo) => !photo.phase && photo.image !== project.overview.image);
   const related = caseStudiesInLocation(project.location).filter((entry) => entry !== project);
   const crumbs: Crumb[] = [
@@ -133,34 +134,45 @@ export default async function CaseStudyPage({ params }: PageProps<"/projects/[lo
                     </li>
                   ))}
                 </ol>
+                {takeaway && (
+                  <section aria-labelledby="work-in-detail" className="mt-8 grid gap-4 rounded-[22px] bg-halo/20 p-6 md:mt-10 md:grid-cols-3 md:gap-8 md:p-8">
+                    <h2 id="work-in-detail" className="text-display type-h3 max-w-[22ch]">What property owners can learn</h2>
+                    <div className="md:col-span-2">
+                      <h3 className="text-display type-h4">{takeaway.title}</h3>
+                      <p className="mt-2 max-w-[72ch] text-[0.9375rem] leading-relaxed text-ink/75">{takeaway.body}</p>
+                    </div>
+                  </section>
+                )}
               </div>
             </section>
           )}
 
-          <section aria-labelledby="work-in-detail" className={timeline.length ? "py-16 md:py-24" : "pb-16 md:pb-24"}>
-            <div className="container-x">
-              <SectionHead id="work-in-detail" title={timeline.length ? "What property owners can learn" : "Work in detail"} />
-              <div className={`mt-8 grid gap-x-10 gap-y-6 ${sections.length > 1 || project.renovationReferral ? "md:grid-cols-2" : ""}`}>
-                {sections.map((section) => (
-                  <div key={section.title} className="border-t border-ink/12 pt-4">
-                    <h3 className="text-display type-h4">{section.title}</h3>
-                    <p className="mt-2 max-w-[66ch] text-[0.9375rem] leading-relaxed text-ink/75">{section.body}</p>
-                  </div>
-                ))}
-                {project.renovationReferral && (
-                  <div className="border-t border-ink/12 pt-4">
-                    <h3 className="text-display type-h4">Planning your own villa renovation?</h3>
-                    <p className="mt-2 max-w-[66ch] text-[0.9375rem] leading-relaxed text-ink/75">
-                      <VillaRenovationReferral {...project.renovationReferral} />
-                    </p>
-                  </div>
-                )}
+          {!takeaway && (
+            <section aria-labelledby="work-in-detail" className={timeline.length ? "py-16 md:py-24" : "pb-16 md:pb-24"}>
+              <div className="container-x">
+                <SectionHead id="work-in-detail" title={timeline.length ? "What property owners can learn" : "Work in detail"} />
+                <div className={`mt-8 grid gap-x-10 gap-y-6 ${sections.length > 1 || project.renovationReferral ? "md:grid-cols-2" : ""}`}>
+                  {sections.map((section) => (
+                    <div key={section.title} className="border-t border-ink/12 pt-4">
+                      <h3 className="text-display type-h4">{section.title}</h3>
+                      <p className="mt-2 max-w-[66ch] text-[0.9375rem] leading-relaxed text-ink/75">{section.body}</p>
+                    </div>
+                  ))}
+                  {project.renovationReferral && (
+                    <div className="border-t border-ink/12 pt-4">
+                      <h3 className="text-display type-h4">Planning your own villa renovation?</h3>
+                      <p className="mt-2 max-w-[66ch] text-[0.9375rem] leading-relaxed text-ink/75">
+                        <VillaRenovationReferral {...project.renovationReferral} />
+                      </p>
+                    </div>
+                  )}
+                </div>
               </div>
-            </div>
-          </section>
+            </section>
+          )}
 
           {gallery.length > 0 && (
-            <section aria-labelledby="project-photos" className="bg-bone py-16 md:py-24">
+            <section aria-labelledby="project-photos" className={takeaway ? "bg-bone pb-16 md:pb-24" : "bg-bone py-16 md:py-24"}>
               <div className="container-x">
                 <SectionHead id="project-photos" title="Project photos" />
                 <div className="mt-8 grid gap-x-4 gap-y-7 sm:grid-cols-2">
