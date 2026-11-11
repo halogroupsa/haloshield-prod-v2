@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/Button";
 export function BuyerGuide({ slug }: { slug: string }) {
   const guide = buyerGuides[slug];
   if (!guide) return null;
+  const { comparisonLink } = guide;
   return (
     <section aria-labelledby="quotation-scope" className="bg-bone py-16 md:py-24">
       <div className="container-x">
@@ -25,7 +26,18 @@ export function BuyerGuide({ slug }: { slug: string }) {
               <h3 className="text-[1.125rem] font-medium">What to send for an accurate quotation</h3>
               <p className="mt-3 text-[0.9375rem] leading-relaxed text-membrane/75">{guide.inputs}</p>
               <h3 className="mt-6 text-[1.125rem] font-medium">Comparing proposals</h3>
-              <p className="mt-3 text-[0.9375rem] leading-relaxed text-membrane/75">{guide.compare}</p>
+              <p className="mt-3 text-[0.9375rem] leading-relaxed text-membrane/75">
+                {guide.compare}
+                {comparisonLink && (
+                  <>
+                    {" "}{comparisonLink.intro}{" "}
+                    <a href={comparisonLink.href} className="font-medium text-membrane underline decoration-membrane/50 underline-offset-4 hover:decoration-membrane">
+                      {comparisonLink.label}
+                    </a>
+                    .
+                  </>
+                )}
+              </p>
             </div>
           </div>
         </div>

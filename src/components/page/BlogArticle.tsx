@@ -2,6 +2,7 @@ import Link from "next/link";
 import { PageHero } from "@/components/page/PageHero";
 import { JsonLd } from "@/components/page/JsonLd";
 import { FinalCta } from "@/components/home/FinalCta";
+import { BlogGuideGrid } from "@/components/page/BlogGuideGrid";
 import { BlogImage } from "@/components/page/BlogImage";
 import { resources, type Resource } from "@/lib/content/resources";
 import { blogArchivePath, blogPostPath, formatBlogDate } from "@/lib/blogs";
@@ -100,13 +101,7 @@ export function BlogArticle({ guide }: { guide: Resource }) {
           {related.length > 0 && (
             <>
               <h2 className="type-h3">More planning guides</h2>
-              <ul className="mt-5 space-y-3">
-                {related.map((resource) => (
-                  <li key={resource.slug}>
-                    <Link className="inline-block py-2 underline underline-offset-4" href={blogPostPath(resource.slug)}>{resource.title}</Link>
-                  </li>
-                ))}
-              </ul>
+              <BlogGuideGrid guides={related} />
             </>
           )}
           <Link href={`${blogArchivePath(1)}#blog-archive`} className="mt-4 inline-block py-2 font-medium underline underline-offset-4">Browse all guides</Link>

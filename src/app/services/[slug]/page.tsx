@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PageHero } from "@/components/page/PageHero";
+import { BlogGuideGrid } from "@/components/page/BlogGuideGrid";
 import { BuyerGuide } from "@/components/page/BuyerGuide";
 import { SectionHead } from "@/components/page/SectionHead";
 import { VillaRenovationReferral } from "@/components/page/VillaRenovationReferral";
@@ -18,7 +19,6 @@ import { ArrowIcon, Button } from "@/components/ui/Button";
 import { getService, processSteps, services, site, telHref } from "@/lib/site";
 import { serviceDetails } from "@/lib/content/services";
 import { resources } from "@/lib/content/resources";
-import { blogPostPath } from "@/lib/blogs";
 import { faqNode, pageGraph, serviceNode, type Crumb } from "@/lib/schema";
 import { imageSrc } from "@/lib/image-src";
 import { pageMeta } from "@/lib/seo";
@@ -240,22 +240,10 @@ export default async function ServicePage({ params }: PageProps<"/services/[slug
         <BuyerGuide slug={slug} />
 
         {guides.length > 0 && (
-          <section aria-labelledby="related-guides" className="pb-16 md:pb-24">
+          <section aria-labelledby="related-guides" className="py-16 md:py-24">
             <div className="container-x">
               <SectionHead id="related-guides" title="Related guides" />
-              <ul className="mt-8 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
-                {guides.map((guide) => (
-                  <li key={guide.slug}>
-                    <Link href={blogPostPath(guide.slug)} className="group flex h-full flex-col rounded-[22px] bg-bone p-6 hover:bg-bone-2 md:p-8">
-                      <h3 className="text-display type-h4">{guide.title}</h3>
-                      <p className="mt-3 grow text-[0.9375rem] leading-relaxed text-ink/70">{guide.description}</p>
-                      <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold">
-                        Read guide <ArrowIcon size={12} className="transition-transform group-hover:translate-x-1" />
-                      </span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+              <BlogGuideGrid guides={guides} />
             </div>
           </section>
         )}

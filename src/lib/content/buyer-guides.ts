@@ -1,4 +1,11 @@
-export type BuyerGuide = { heading: string; included: string[]; extras: string[]; inputs: string; compare: string };
+export type BuyerGuide = {
+  heading: string;
+  included: string[];
+  extras: string[];
+  inputs: string;
+  compare: string;
+  comparisonLink?: { intro: string; href: `https://halo.ae/services/${string}`; label: string };
+};
 
 export const buyerGuides: Record<string, BuyerGuide> = {
   "roof-waterproofing-dubai": {
@@ -51,7 +58,12 @@ export const buyerGuides: Record<string, BuyerGuide> = {
       "Tile removal, shell repairs, pipework and finish replacement"
     ],
     "inputs": "Pool or tank dimensions, water use, leak history, drawings, existing lining details and shutdown constraints.",
-    "compare": "For drinking-water tanks, request evidence that the exact proposed product is suitable for potable-water contact. Pool finishes and tank linings are different specifications."
+    "compare": "For drinking-water tanks, request evidence that the exact proposed product is suitable for potable-water contact. For an existing pool, check whether the quote covers shell repairs and reinstating the finish.",
+    "comparisonLink": {
+      "intro": "If the pool renovation also includes a new deck, lighting or garden layout, explore",
+      "href": "https://halo.ae/services/landscaping-pools-dubai",
+      "label": "Halo’s pool renovation and landscaping services"
+    }
   },
   "terrace-balcony-waterproofing-dubai": {
     "heading": "Balcony and terrace leak repair",
@@ -64,7 +76,12 @@ export const buyerGuides: Record<string, BuyerGuide> = {
       "Drainage alterations, balustrade details and threshold adjustments"
     ],
     "inputs": "Area, photographs, existing floor finish, door-threshold details and access to the room below.",
-    "compare": "Ask whether tiles will be lifted and whether drainage and door thresholds are included. Regrouting alone may leave a failed membrane untreated."
+    "compare": "Ask whether tiles will be lifted and whether drainage and door thresholds are included. Regrouting alone may leave a failed membrane untreated.",
+    "comparisonLink": {
+      "intro": "If you’re redesigning a ground-level villa terrace that opens onto a pool or garden, plan the finished levels and drainage with",
+      "href": "https://halo.ae/services/landscaping-pools-dubai",
+      "label": "Halo’s landscape and outdoor living team"
+    }
   },
   "bathroom-wet-area-waterproofing-dubai": {
     "heading": "Bathroom waterproofing and shower leak repair",
@@ -77,7 +94,12 @@ export const buyerGuides: Record<string, BuyerGuide> = {
       "Plumbing repairs, sanitaryware removal and ceiling decoration below"
     ],
     "inputs": "Bathroom layout, affected floor below, photos, pipework history and whether tiles can be removed.",
-    "compare": "Confirm how membrane continuity around outlets and corners will be tested before tiling and whether plumbing defects are a separate repair."
+    "compare": "Confirm how the membrane around outlets and corners will be tested before tiles go back on, and check whether plumbing repairs are priced separately.",
+    "comparisonLink": {
+      "intro": "Once the membrane passes testing, you can arrange any tiling excluded from your quote through",
+      "href": "https://halo.ae/services/tile-installation-dubai",
+      "label": "Halo’s tile installation team"
+    }
   },
   "polyurea-coating-dubai": {
     "heading": "Polyurea coating contractor",
@@ -155,7 +177,12 @@ export const buyerGuides: Record<string, BuyerGuide> = {
       "Specialist plumbing tests, repairs and reinstatement"
     ],
     "inputs": "Leak timing, photos or video, floor plans, recent plumbing work and access to neighbouring areas if relevant.",
-    "compare": "Confirm the report deliverable and limitations. A thermal anomaly is an investigation clue and needs to be interpreted with other site evidence."
+    "compare": "Confirm the report deliverable and limitations. A thermal anomaly is an investigation clue and needs to be interpreted with other site evidence.",
+    "comparisonLink": {
+      "intro": "If you’re buying a property or accepting handover and need a report that also covers finishes and building systems, see",
+      "href": "https://halo.ae/services/property-inspection-dubai",
+      "label": "Halo’s property inspection and snagging service"
+    }
   },
   "building-envelope-waterproofing-dubai": {
     "heading": "Facade sealing and envelope waterproofing",
@@ -168,7 +195,12 @@ export const buyerGuides: Record<string, BuyerGuide> = {
       "Glazing replacement, structural repairs and internal decoration"
     ],
     "inputs": "Elevations, interface details, leak photos, access limitations and previous facade repair records.",
-    "compare": "Check which elevations and junctions are included, and whether the quote addresses the entry route rather than only an internal stain."
+    "compare": "Check which elevations and junctions are included, and whether the quote addresses the entry route rather than only an internal stain.",
+    "comparisonLink": {
+      "intro": "If the inspection finds that the window assembly needs replacing, price that work separately with",
+      "href": "https://halo.ae/services/window-glazing-dubai",
+      "label": "Halo’s window glazing and replacement team"
+    }
   },
   "indoor-air-quality-dubai": {
     "heading": "Indoor air quality assessment and testing scope",
@@ -181,7 +213,12 @@ export const buyerGuides: Record<string, BuyerGuide> = {
       "Duct cleaning, equipment changes and building repairs"
     ],
     "inputs": "Building use, affected rooms, AC system, maintenance history and recent leaks or refurbishment.",
-    "compare": "Request the exact testing parameters, sampling locations, report and follow-up scope. Do not assume all pollutants are tested in one visit."
+    "compare": "Request the exact testing parameters, sampling locations, report and follow-up scope. Do not assume all pollutants are tested in one visit.",
+    "comparisonLink": {
+      "intro": "If the findings call for changes to ventilation, ductwork or AC equipment, discuss the installation scope with",
+      "href": "https://halo.ae/services/mep-hvac-dubai",
+      "label": "Halo’s MEP and HVAC team"
+    }
   },
   "building-energy-assessment-dubai": {
     "heading": "Building energy and thermal assessment",
