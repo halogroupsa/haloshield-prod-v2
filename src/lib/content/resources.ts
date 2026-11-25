@@ -2,7 +2,7 @@ import { blogImages, type BlogImageData } from "../blog-images.generated";
 import { BLOG_PAGE_SIZE } from "../blogs";
 import { waterproofingGuides } from "./waterproofing-guides";
 
-type GuideLink = { href: `/${string}/${string}`; label: string };
+type GuideLink = { href: `/${string}/${string}` | `https://${string}`; label: string };
 type GuideParagraph = string | readonly (string | GuideLink)[];
 
 export type Resource = {
@@ -24,6 +24,59 @@ const initialPublication = "2026-11-03T14:43:47+04:00";
 
 /** New editorial guides; not presented as recovered CMS articles. */
 const guides: Resource[] = [
+  {
+    "slug": "villa-waterproofing-inspection-checklist-dubai",
+    "title": "What a Dubai villa waterproofing inspection should cover",
+    "description": "Prepare for a villa waterproofing inspection with a room-by-room record, roof and terrace access, and a written list of what still needs testing.",
+    "service": "villa-waterproofing-dubai",
+    "publishedAt": "2026-11-25",
+    "image": blogImages["roof-leak-inspection-checklist-dubai"],
+    "imageCaption": illustrationCaption,
+    "relatedLinks": [
+      {
+        "href": "/services/leak-detection-thermal-inspection-dubai/",
+        "label": "Leak detection and thermal inspection"
+      },
+      {
+        "href": "/blogs/roof-leak-inspection-checklist-dubai/",
+        "label": "A closer look at roof leak inspections"
+      },
+      {
+        "href": "https://www.epa.gov/indoor-air-quality-iaq/moisture-control-guidance-building-design-construction-and-maintenance-0",
+        "label": "EPA guide to building moisture control"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "Start with where and when you notice water",
+        "body": [
+          "A villa waterproofing inspection should connect what you see indoors with the details an inspector can examine outside. Give the team a list of affected rooms, when the marks appear and what was happening at the time. A stain that comes back after rain is a different starting point from a damp patch that appears after the bathroom is used.",
+          "Take a wide photo to locate each mark and a close-up to record its condition. Note dates, weather or irrigation and previous repairs. If the wall was painted recently, include older photographs if you have them. A dry visit is easier to interpret when the inspector can see what the property looked like during an incident."
+        ]
+      },
+      {
+        "heading": "Walk the roof, terrace and garden as one property",
+        "body": [
+          "At the roof, ask what can be seen around drains, wall junctions, pipe openings and AC supports. On terraces, add the doorway, outlet and edge where the floor meets the wall. At ground level, show the inspector any areas where water collects beside walls or around a garage entrance. Confirm safe access with the inspection team before the visit.",
+          "Put the indoor and outdoor observations on the same sketch, especially when a stain is below a terrace or beside a planter. The locations help the team consider plausible routes for water and decide where a closer look is worthwhile. Tell them when dry-weather symptoms overlap with plumbing, irrigation or AC use."
+        ]
+      },
+      {
+        "heading": "Ask what the visit can establish",
+        "body": [
+          "A photograph of a lifted edge or blocked outlet records a visible condition. Agree whether the inspector will also take moisture readings or propose further tests to see whether a suspected route accounts for the indoor damage. Ask which areas may be concealed or inaccessible and what could be checked later.",
+          "For example, if a tiled terrace is above a marked ceiling, ask what can be assessed at exposed edges and outlets and what would require further investigation. Have the inspector identify the specific area before you consider removing tiles or approving another repair."
+        ]
+      },
+      {
+        "heading": "Read the findings before asking for a repair scope",
+        "body": [
+          "A useful record ties each observation to a location and says what was inspected, what could not be reached and which next step the inspector recommends. Ask for the repair scope to identify the detail or area it addresses and how the contractor will verify the work.",
+          "If you are planning work across the villa, send Halo Shield the photo log, a simple property plan and any previous repair records. Point out the areas you can make accessible and any finishes you prefer to retain."
+        ]
+      }
+    ]
+  },
   ...waterproofingGuides,
   {
     "slug": "waterproofing-quotation-dubai",
