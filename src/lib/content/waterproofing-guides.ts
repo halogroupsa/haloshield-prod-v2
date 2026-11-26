@@ -5,7 +5,7 @@ import type { Resource } from "./resources";
 
 const editorialDate = "2026-11-11T13:05:00+04:00";
 
-function guideImage(name: ImageName, alt: string): BlogImageData {
+export function guideImage(name: ImageName, alt: string): BlogImageData {
   const { w, h, widths } = images[name];
   return {
     src: imageSrc(name),
@@ -17,6 +17,61 @@ function guideImage(name: ImageName, alt: string): BlogImageData {
 }
 
 export const waterproofingGuides: readonly Resource[] = [
+  {
+    slug: "ceiling-stain-leak-detection-dubai",
+    title: "How to record a ceiling stain before booking leak detection",
+    description: "Use a simple photo log to record ceiling stains, timing and nearby rooms before booking leak detection for your Dubai property.",
+    service: "leak-detection-thermal-inspection-dubai",
+    publishedAt: "2026-11-26",
+    keywords: ["ceiling stain leak detection Dubai", "water stain on ceiling", "ceiling moisture photo log"],
+    image: guideImage(
+      "case-studies/ht-17-emirates-hills/06-ceiling-duct-detail",
+      "Exposed ductwork and pipes below a concrete ceiling",
+    ),
+    imageCaption: "Exposed ceiling ductwork at a villa in Emirates Hills.",
+    relatedLinks: [
+      { href: "/services/leak-detection-thermal-inspection-dubai/", label: "Leak detection and thermal inspection in Dubai" },
+    ],
+    sections: [
+      {
+        heading: "Start with two photos from floor level",
+        body: [
+          "The mark is back. This time, take a picture that shows where it sits in the room and a closer one that shows its edges. Use a doorway, wall corner or another fixed feature as a reference. Write the room name and date in the file or message so someone can put the photographs in order later.",
+          "If a ceiling is sagging or actively dripping near electrical fittings, keep clear and contact building maintenance promptly. Take photographs only from a safe position. For an old, dry-looking patch, record when you first noticed it and how it looks today.",
+        ],
+      },
+      {
+        heading: "Put the timing next to the photo",
+        body: [
+          "Write down when the mark darkened, became larger or reappeared. Add what you already know about recent rain, cooling use, nearby plumbing use or work upstairs. Record the time you noticed the stain separately from the time of the event. An evening rain shower can be a useful clue even if you only saw the mark the following morning.",
+          "A useful note can be a single line. Monday morning, guest bedroom near the window, darker along the outer edge after overnight rain. If you have no timing information, send the dated photo and state when you first found it.",
+          [
+            "Moisture can move within a building, so the visible patch and the entry point can be in different places. That is one reason to document the pattern for the technician. See the ",
+            { href: "https://www.epa.gov/indoor-air-quality-iaq/moisture-control-guidance-building-design-construction-and-maintenance-0", label: "EPA’s building moisture guidance" },
+            ".",
+          ],
+        ],
+      },
+      {
+        heading: "Send the team a map of what it can access",
+        body: [
+          "Add a simple sketch or mark the photo on your floor plan. If you know what sits above the spot, note it. An apartment may need access coordinated through building management or an upstairs resident. For a villa, tell the technician if the stain sits below a terrace, bathroom or accessible roof area.",
+          "Include any old leak report, paint repairs or photos from before a recent renovation. Give dates where you have them. Ask the building manager which drawings and access points can be made available for the appointment.",
+        ],
+      },
+      {
+        heading: "Ask what the inspection can establish",
+        body: [
+          "Ask what the technician can check during the visit and what might depend on the stain being active or another area being opened by the responsible team. Request a record of the observations, areas checked and any follow-up investigation proposed.",
+          [
+            "When you book ",
+            { href: "/services/leak-detection-thermal-inspection-dubai/", label: "Halo Shield’s leak detection and thermal inspection" },
+            ", send the photo pair, the timing notes and the name of the person who can arrange access.",
+          ],
+        ],
+      },
+    ],
+  },
   {
     slug: "villa-roof-leak-repair-dubai-patch-or-replace",
     title: "Villa roof leak repair in Dubai: patch or replace?",

@@ -1,6 +1,6 @@
 import { blogImages, type BlogImageData } from "../blog-images.generated";
 import { BLOG_PAGE_SIZE } from "../blogs";
-import { waterproofingGuides } from "./waterproofing-guides";
+import { guideImage, waterproofingGuides } from "./waterproofing-guides";
 
 type GuideLink = { href: `/${string}/${string}` | `https://${string}`; label: string };
 type GuideParagraph = string | readonly (string | GuideLink)[];
@@ -26,12 +26,12 @@ const initialPublication = "2026-11-03T14:43:47+04:00";
 const guides: Resource[] = [
   {
     "slug": "villa-waterproofing-inspection-checklist-dubai",
-    "title": "What a Dubai villa waterproofing inspection should cover",
+    "title": "Where water gets into a Dubai villa: what a 2027 protection survey should cover",
     "description": "Prepare for a villa waterproofing inspection with a room-by-room record, roof and terrace access, and a written list of what still needs testing.",
     "service": "villa-waterproofing-dubai",
     "publishedAt": "2026-11-25",
-    "image": blogImages["roof-leak-inspection-checklist-dubai"],
-    "imageCaption": illustrationCaption,
+    "image": guideImage("villa-facade-waterproofing-dubai", "Crew working on a Dubai villa’s exterior walls with a boom lift and scaffolding"),
+    "imageCaption": "Façade waterproofing work on a Dubai villa.",
     "relatedLinks": [
       {
         "href": "/services/leak-detection-thermal-inspection-dubai/",
