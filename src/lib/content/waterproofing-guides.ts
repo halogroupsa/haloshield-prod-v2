@@ -36,15 +36,16 @@ export const waterproofingGuides: readonly Resource[] = [
       {
         heading: "Start with two photos from floor level",
         body: [
-          "The mark is back. This time, take a picture that shows where it sits in the room and a closer one that shows its edges. Use a doorway, wall corner or another fixed feature as a reference. Write the room name and date in the file or message so someone can put the photographs in order later.",
-          "If a ceiling is sagging or actively dripping near electrical fittings, keep clear and contact building maintenance promptly. Take photographs only from a safe position. For an old, dry-looking patch, record when you first noticed it and how it looks today.",
+          "If the ceiling is sagging or water is dripping near electrical fittings, keep clear and contact building maintenance promptly. Photograph the stain only from a safe position.",
+          "For a dry-looking mark, take one photo of the room and a second that shows the edges of the stain. Include a fixed point such as a doorway or wall corner. Note the room, date and time, whether the mark followed rain or nearby fixture use, and what changed since you first saw it.",
         ],
       },
       {
         heading: "Put the timing next to the photo",
         body: [
           "Write down when the mark darkened, became larger or reappeared. Add what you already know about recent rain, cooling use, nearby plumbing use or work upstairs. Record the time you noticed the stain separately from the time of the event. An evening rain shower can be a useful clue even if you only saw the mark the following morning.",
-          "A useful note can be a single line. Monday morning, guest bedroom near the window, darker along the outer edge after overnight rain. If you have no timing information, send the dated photo and state when you first found it.",
+          "Try this photo log for each observation: date and time, room and exact spot, photo filenames, weather or nearby fixture use, and what changed since the last photo.",
+          "For example, write “Monday, 8 am. Guest bedroom ceiling by the window. Photos 01 and 02. Rain overnight, upstairs bathroom use unknown. Outer edge looks darker than Sunday.” If you notice another change, take a second pair from the same safe position and add a new entry. Tell the technician which details you could verify.",
           [
             "Moisture can move within a building, so the visible patch and the entry point can be in different places. That is one reason to document the pattern for the technician. See the ",
             { href: "https://www.epa.gov/indoor-air-quality-iaq/moisture-control-guidance-building-design-construction-and-maintenance-0", label: "EPA’s building moisture guidance" },

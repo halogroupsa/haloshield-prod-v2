@@ -30,8 +30,8 @@ function getBlogRoute(slug: string[]) {
 export async function generateMetadata({ params }: PageProps<"/blogs/[...slug]">): Promise<Metadata> {
   const route = getBlogRoute((await params).slug);
   if (route.kind === "archive") return blogArchiveMetadata(route.page);
-  const { title, description, slug, image } = route.guide;
-  return pageMeta({
+  const { title, description, slug, image, publishedAt } = route.guide;
+  const metadata = pageMeta({
     title,
     description,
     path: blogPostPath(slug),
@@ -40,6 +40,10 @@ export async function generateMetadata({ params }: PageProps<"/blogs/[...slug]">
     imageWidth: image.width,
     imageHeight: image.height,
   });
+  return {
+    ...metadata,
+    openGraph: { ...metadata.openGraph, type: "article", publishedTime: publishedAt },
+  };
 }
 
 export default async function BlogPage({ params }: PageProps<"/blogs/[...slug]">) {
