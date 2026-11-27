@@ -18,6 +18,39 @@ export function guideImage(name: ImageName, alt: string): BlogImageData {
 
 export const waterproofingGuides: readonly Resource[] = [
   {
+    slug: "rainwater-under-villa-garage-door-dubai",
+    title: "Why rainwater gets under a villa garage door in Dubai",
+    description: "Record where rainwater reaches a garage door and check what a site survey should cover, from driveway falls and drainage to the threshold.",
+    service: "villa-waterproofing-dubai",
+    publishedAt: "2026-11-27",
+    keywords: ["garage door rainwater Dubai", "villa garage threshold leak", "driveway drainage inspection"],
+    image: guideImage("case-studies/dh139-dubai-hills/02-villa-exterior", "Exterior of a villa in Dubai Hills Estate"),
+    imageCaption: "A villa exterior in Dubai Hills Estate.",
+    sections: [
+      {
+        heading: "Check how water reaches the door",
+        body: [
+          "A wet strip just inside a garage door can come from water running down the driveway, a drain that cannot take the flow, or water passing at the threshold. Photograph the approach, the drain and the inside edge from a safe, dry position. The first wet area can help the surveyor decide where to start.",
+          "After the rain clears, look for silt lines or a mark on the inside floor. A narrow patch at one corner gives the team a different starting point from a broad wet strip across the opening. Record what you saw and when."
+        ]
+      },
+      {
+        heading: "Walk the driveway before replacing the seal",
+        body: [
+          "Ask the surveyor to check how the paving falls toward the garage, whether water can reach the drain, and where it is discharged. Share any recent paving work, landscaping changes or problems with the drain backing up.",
+          ["Surface drainage and moisture protection need to be considered together. The ", { href: "https://www.epa.gov/indoor-air-quality-iaq/moisture-control-guidance-building-design-construction-and-maintenance-0", label: "EPA’s building moisture guidance" }, " explains the broader principles. For the garage, ask the team to show which part of the water path its proposal addresses."]
+        ]
+      },
+      {
+        heading: "Ask the quote to name the cause it addresses",
+        body: [
+          "A new door seal may be reasonable if the survey shows a local gap and the drainage works. If water is pooling against the opening, ask what the proposal does about that first. Confirm who will reinstate any disturbed paving and how the team will check the result.",
+          ["Send photos of the driveway and threshold, the date of the last incident, and any previous repair history when arranging a ", { href: "/services/villa-waterproofing-dubai/", label: "villa waterproofing assessment in Dubai" }, "."]
+        ]
+      }
+    ]
+  },
+  {
     slug: "ceiling-stain-leak-detection-dubai",
     title: "How to record a ceiling stain before booking leak detection",
     description: "Use a simple photo log to record ceiling stains, timing and nearby rooms before booking leak detection for your Dubai property.",
