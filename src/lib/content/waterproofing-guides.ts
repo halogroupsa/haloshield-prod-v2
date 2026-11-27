@@ -18,6 +18,39 @@ export function guideImage(name: ImageName, alt: string): BlogImageData {
 
 export const waterproofingGuides: readonly Resource[] = [
   {
+    slug: "flat-roof-drainage-checklist-before-waterproofing-dubai",
+    title: "Flat roof drainage: what to check before selecting a waterproofing system",
+    description: "Before pricing flat roof waterproofing in Dubai, map where water collects, how it reaches outlets and what needs to change around roof edges.",
+    service: "roof-waterproofing-dubai",
+    publishedAt: "2026-11-28",
+    keywords: ["flat roof drainage checklist Dubai", "roof waterproofing assessment", "flat roof ponding"],
+    image: guideImage("case-studies/dh-129-site-images/02-existing-roof-surface", "Existing flat roof surface beside a raised perimeter wall"),
+    imageCaption: "An existing flat roof before surface preparation.",
+    sections: [
+      {
+        heading: "Show how water is supposed to leave",
+        body: [
+          "Before choosing a waterproofing system, ask the surveyor to show how the roof is meant to drain and where it holds water now. An outlet problem, a low point and a failed joint call for different work. The quote should say which condition it addresses and what changes are included.",
+          "Starting with a plan or an existing roof photo, mark A for outlets, B for any overflow, C for wet or stained areas, and arrows for the expected direction of water. Mark upstands, the raised edges where the roof meets walls or equipment bases, and route any inspection through an authorised contractor."
+        ]
+      },
+      {
+        heading: "Separate a blocked outlet from a low spot",
+        body: [
+          "For example, if the damp area runs towards an outlet, ask the team to check the outlet and downstream drainage. If it sits in the middle of the roof with a dry strip between it and the outlet, ask the surveyor to check the roof levels and the local fall. Give the team photos taken from a safe position and the dates of any repeat incidents.",
+          ["The ", { href: "https://www.epa.gov/indoor-air-quality-iaq/moisture-control-guidance-building-design-construction-and-maintenance-0", label: "EPA’s guide to moisture control in roof assemblies" }, " gives background on looking at roof drainage and moisture together."]
+        ]
+      },
+      {
+        heading: "Ask the quote to describe the outlet and edge details",
+        body: [
+          "Ask what the proposed system does where it meets outlets, parapets and equipment bases. If the survey recommends improving falls or modifying drainage, confirm who designs and prices that work. Ask how the contractor plans to verify the completed details.",
+          ["Book a ", { href: "/services/roof-waterproofing-dubai/", label: "roof waterproofing assessment in Dubai" }, " with the sketch and repair history. For ongoing ownership, record who will check drainage and when. ", { href: "https://haloworks.ae/services/annual-maintenance/", label: "Halo Works’ annual maintenance guidance" }, " can help you put that responsibility into a wider villa maintenance plan."]
+        ]
+      }
+    ]
+  },
+  {
     slug: "rainwater-under-villa-garage-door-dubai",
     title: "Why rainwater gets under a villa garage door in Dubai",
     description: "Record where rainwater reaches a garage door and check what a site survey should cover, from driveway falls and drainage to the threshold.",
